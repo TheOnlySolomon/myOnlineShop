@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="result">
+    <p>Confirming your payment…</p>
+</div>
+
+<script>
+    async function confirmOrder() {
+        const params = new URLSearchParams(window.location.search);
+        const sessionId = params.get("session_id");
+        const result = document.getElementById("result");
+
+        if (!sessionId) {
+            result.innerHTML = "<h1>Missing order reference</h1><p>We couldn't find a checkout session to confirm.</p><a href=\"/index.html\">Back to shop</a>";
+            return;
+        }
+
+        try {
+            const response = await fetch(`/api/verify-session?session_id=${encodeURIComponent(sessionId)}`);
+            const data = await response.json();
+
+            if (!response.ok) throw new Error(data.error || "Verification failed");
+
+            if (data.status === "paid") {
+                result.innerHTML = `
+                    <h1>Thank you for your order!</h1>
+                    <p>Order #${data.orderId} confirmed.</p>
+                    <p>Total: $${(data.total / 100).toFixed(2)}</p>
+                    <a href="/index.html">Back to shop</a>
+                `;
+            } else {
+                result.innerHTML = `<h1>Payment not completed</h1><p>Status: ${data.status}</p><a href="/index.html">Back to shop</a>`;
+            }
+        } catch (err) {
+            console.error("Order confirmation error:", err);
+            result.innerHTML = "<h1>Something went wrong</h1><p>We couldn't confirm your order. If you were charged, please keep your receipt and contact support.</p><a href=\"/index.html\">Back to shop</a>";
+        }
+    }
+
+    confirmOrder();
+</script>
+
+</body>
+</html>
