@@ -1,5 +1,5 @@
 const Stripe = require("stripe");
-const { getPool } = require("../myOnlineShop/lib/db");
+const { getPool } = require("../lib/db"); // Fixed import path
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -18,8 +18,7 @@ module.exports = async (req, res) => {
     try {
         const pool = getPool();
 
-        // Price and stock always come from the database, never from the client,
-        // so a tampered request can't change what the customer is charged.
+        // Price and stock fetched securely from PostgreSQL
         const result = await pool.query(
             "SELECT id, name, price, stock FROM products WHERE id = $1",
             [productId]
@@ -32,6 +31,8 @@ module.exports = async (req, res) => {
         if (product.stock < qty) {
             return res.status(409).json({ error: "Not enough stock available" });
         }
+
+        const baseUrl = process.env.BASE_URL || `http://${req.headers.host}`;
 
         const session = await stripe.checkout.sessions.create({
             mode: "payment",
@@ -50,8 +51,8 @@ module.exports = async (req, res) => {
                 productId: String(product.id),
                 quantity: String(qty)
             },
-            success_url: `${process.env.BASE_URL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `${process.env.BASE_URL}/index.html`
+            success_url: `${baseUrl}/?success=true`,
+            cancel_url: `${baseUrl}/?canceled=true`
         });
 
         res.status(200).json({ url: session.url });
