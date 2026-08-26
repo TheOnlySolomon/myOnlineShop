@@ -17,15 +17,26 @@ An e-commerce web application built for **Clover Calisthenics**, designed to sho
 
 ```text
 .
-├── api/               # Backend API routes and controllers
-├── lib/               # Utility functions and shared modules
-├── database.sql       # Database schema and initial seed data
-├── index.html         # Main storefront page
-├── success.html      # Order confirmation / thank-you page
-├── script.js          # Client-side JavaScript logic
-├── style.css          # Styling and responsive design layouts
-├── package.json       # Node.js dependencies and project scripts
-├── LICENSE            # License information
-└── README.md          # Project documentation
+├── 🎨 FRONTEND (Client-Side)
+│   ├── index.html          # Main storefront page
+│   ├── success.html        # Order confirmation page (handles Stripe success redirects)
+│   ├── script.js           # Client-side UI logic, API fetches, and checkout triggers
+│   └── style.css           # Custom styling and responsive design layouts
+│
+├── ⚙️ BACKEND (Server-Side)
+│   ├── api/
+│   │   ├── checkout.js     # Serverless route to securely create Stripe sessions
+│   │   ├── products.js     # Serverless route to fetch product listings
+│   │   └── verify-session.js # Serverless route to validate completed Stripe payments
+│   └── lib/
+│       └── db.js           # Shared database helper for PostgreSQL connection pooling
+│
+├── 🛠️ DATABASE & CONFIGURATION
+│   ├── .env.local          # Private environment variables (DB URL, Stripe keys)
+│   ├── database.sql        # Database schema definitions and initial seed data
+│   ├── test-db.js          # Local utility script to verify database connectivity
+│   ├── package.json        # Node.js dependencies and project scripts
+│   ├── LICENSE             # Open-source license details
+│   └── README.md           # Project documentation
 
 
