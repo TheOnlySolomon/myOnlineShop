@@ -1,4 +1,4 @@
-const { getPool } = require("../myOnlineShop/lib/db");
+const { getPool } = require("../lib/db");
 
 module.exports = async (req, res) => {
     if (req.method !== "GET") {
@@ -10,9 +10,9 @@ module.exports = async (req, res) => {
         const result = await pool.query(
             "SELECT id, name, price, stock FROM products WHERE stock > 0 ORDER BY id"
         );
-        res.status(200).json(result.rows);
+        return res.status(200).json(result.rows);
     } catch (err) {
-        console.error("Failed to fetch products:", err.message);
-        res.status(500).json({ error: "Unable to load products right now" });
+        console.error("API ROUTE ERROR:", err);
+        return res.status(500).json({ error: "Internal Server Error", message: err.message });
     }
 };
