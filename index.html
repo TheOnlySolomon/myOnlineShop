@@ -3,20 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Shop</title>
+    <meta name="description" content="CloverCali — Four Horsemen of Calisthenics.">
+    <title>CloverCali | Home</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <header class="site-header">
+        <div class="nav-shell">
+            <button class="icon-button menu-button" aria-label="Open menu" type="button">
+                <span></span><span></span><span></span>
+            </button>
 
-<h1>My Clothing Store</h1>\
+            <a class="brand" href="index.html" aria-label="CloverCali Home">
+                <img src="images/CloverCaliLogo.png" alt="CloverCali logo">
+            </a>
 
-<p>Welcome to our a website! You can purchase our clothing, apparatus bla bla </p>
+            <div class="nav-actions">
+                <button class="icon-button" aria-label="Search" type="button">
+                    <svg viewBox="0 0 32 32" aria-hidden="true">
+                        <circle cx="13.5" cy="13.5" r="9.5"></circle>
+                        <line x1="20.5" y1="20.5" x2="29" y2="29"></line>
+                    </svg>
+                </button>
 
-<div id="products">
-    <p>Loading products…</p>
-</div>
+                <button class="icon-button cart-button" aria-label="Shopping cart" type="button">
+                    <svg viewBox="0 0 36 32" aria-hidden="true">
+                        <path d="M3 5h5l3.2 16.5h17.2l4-12H10"></path>
+                        <circle cx="14" cy="27" r="1.7"></circle>
+                        <circle cx="27" cy="27" r="1.7"></circle>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
 
-<script src="script.js"></script>
+    <main>
+        <!-- HERO -->
+        <section class="hero section">
+            <div class="hero-image-wrap">
+                <img src="images/ShirtPhoto3.jpeg" alt="CloverCali athlete wearing a CloverCali shirt">
+            </div>
 
+            <div class="hero-copy">
+                <h1>The Four Horsemen of Calisthenics.</h1>
+                <p class="hero-list">Muscle-Up.<br>Handstand.<br>Planche.<br>Front Lever.<br>+ many more.</p>
+
+                <p>
+                    The four disciplines that define the pursuit of mastery in
+                    calisthenics. Each movement demands strength, control,
+                    discipline, and relentless dedication, but together they
+                    represent something greater: a commitment to mastery of the
+                    body and mind.
+                </p>
+
+                <p>
+                    CloverCali is built for those willing to put in the work,
+                    whether you are just beginning your journey or pushing
+                    toward the next level.
+                </p>
+
+                <a class="outline-button" href="#new-drops">View Products</a>
+            </div>
+        </section>
+
+        <!-- NEW DROPS -->
+        <section class="section drops-section" id="new-drops">
+            <div class="section-heading-row">
+                <h2>New Drops!</h2>
+            </div>
+
+            <div class="drops-window">
+                <div class="drops-track">
+                    <article class="drop-card">
+                        <img src="images/drop-1.jpg" alt="CloverCali product">
+                    </article>
+                    <article class="drop-card">
+                        <img src="images/drop-2.jpg" alt="CloverCali product">
+                    </article>
+                    <article class="drop-card">
+                        <img src="images/drop-3.jpg" alt="CloverCali product">
+                    </article>
+                </div>
+            </div>
+
+            <div class="carousel-controls">
+                <button class="carousel-button prev" type="button" aria-label="Previous products">‹</button>
+                <div class="carousel-dots" aria-hidden="true">
+                    <span class="active"></span><span></span><span></span>
+                </div>
+                <button class="carousel-button next" type="button" aria-label="Next products">›</button>
+            </div>
+        </section>
+
+        <!-- OUR STORY -->
+        <section class="section story-section" id="our-story">
+            <h2>Our Story</h2>
+
+            <div class="story-card">
+                <p>
+                    Every journey begins with a single movement. At CloverCali,
+                    that journey grew into a pursuit of four disciplines —
+                    Muscle-Up, Planche, Front Lever, and Handstand. Each one
+                    represents a different battle.
+                </p>
+
+                <p>
+                    The <strong>Muscle-Up</strong> represents power and progression,
+                    the <strong>Handstand</strong> represents balance and precision,
+                    the <strong>Front Lever</strong> represents body tension and
+                    mastery, and the <strong>Planche</strong> represents raw strength
+                    and control.
+                </p>
+
+                <p>
+                    Together, they became what we call The Four Horsemen of
+                    Calisthenics.
+                </p>
+
+                <p>
+                    Four movements that challenge every aspect of the athlete and
+                    demand more than strength alone. They demand patience,
+                    discipline, failure, and the willingness to return and try
+                    again.
+                </p>
+
+                <p>
+                    Our journey isn't simply skills to collect; they are milestones
+                    on a path toward mastery. Your CloverCali story is your own
+                    journey, that gives you a unique goal. It is forged through
+                    every struggle, every failure, and every breakthrough.
+                </p>
+
+                <p>
+                    Four Horsemen. One Undying Will. Master the Four. Earn Your
+                    Gravity.
+                </p>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="section contact-section" id="contact">
+            <div class="contact-card">
+                <h2>Reach Out To Us!</h2>
+
+                <form id="contactForm">
+                    <div class="form-row">
+                        <label>
+                            <span>Name</span>
+                            <input type="text" name="name" required>
+                        </label>
+
+                        <label>
+                            <span>Email</span>
+                            <input type="email" name="email" required>
+                        </label>
+                    </div>
+
+                    <label>
+                        <span>Message</span>
+                        <textarea name="message" required></textarea>
+                    </label>
+
+                    <div class="form-submit">
+                        <button class="small-button" type="submit">Submit</button>
+                    </div>
+
+                    <p class="form-message" id="formMessage" aria-live="polite"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-shell">
+            <div class="footer-brand">
+                <img src="images/CloverCaliLogo.png" alt="CloverCali logo">
+                <p>
+                    Four disciplines, one pursuit of mastery:
+                    strength, control, discipline, and relentless
+                    dedication.
+                </p>
+                <p>Master the Four. Earn Your Gravity.</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Products</h3>
+                <a class="small-button footer-button" href="#new-drops">View Products</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Contact Information</h3>
+                <p>Trade name:<br>CloverCali</p>
+                <p>Phone number: +65 8123 4567</p>
+                <p>Email:<br>hello@clovercali.com</p>
+                <p>Trade number: N/A</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <a href="#">Back To Top</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
-</html
+</html>

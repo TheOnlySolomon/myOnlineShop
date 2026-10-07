@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "dependencies": {
     "pg": "^8.23.0",
-    "stripe": "^22.5.0"
+    "stripe": "^22.5.0",
+    "vercel": "^59.7.0"
   },
   "description": "",
   "keywords": [],

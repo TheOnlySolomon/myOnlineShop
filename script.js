@@ -1,137 +1,57 @@
-async function loadProducts() {
+// CloverCali homepage interactions
 
-    const container = document.getElementById("products");
+const track = document.querySelector(".drops-track");
+const cards = [...document.querySelectorAll(".drop-card")];
+const prevButton = document.querySelector(".carousel-button.prev");
+const nextButton = document.querySelector(".carousel-button.next");
+const dots = [...document.querySelectorAll(".carousel-dots span")];
 
+let currentSlide = 0;
 
-
-    try {
-
-        const response = await fetch("/api/products");
-
-        if (!response.ok) throw new Error("Request failed");
-
-
-
-        const products = await response.json();
-
-
-
-        if (products.length === 0) {
-
-            container.innerHTML = "<p>No products available right now.</p>";
-
-            return;
-
-        }
-
-
-
-        container.innerHTML = "";
-
-        products.forEach(product => container.appendChild(buildProductCard(product)));
-
-
-
-    } catch (err) {
-
-        console.error("Failed to load products:", err);
-
-        container.innerHTML = "<p>Couldn't load products. Please try again later.</p>";
-
-    }
-
+function visibleCards() {
+    return window.innerWidth <= 600 ? 1 : window.innerWidth <= 850 ? 1 : 2;
 }
 
+function updateCarousel() {
+    if (!track || cards.length === 0) return;
 
+    const visible = visibleCards();
+    const maxSlide = Math.max(0, cards.length - visible);
+    currentSlide = Math.min(currentSlide, maxSlide);
 
-function buildProductCard(product) {
+    const cardWidth = cards[0].getBoundingClientRect().width;
+    const gap = parseFloat(getComputedStyle(track).gap) || 0;
 
-    const card = document.createElement("div");
+    track.style.transform =
+        `translateX(-${currentSlide * (cardWidth + gap)}px)`;
 
-    card.className = "product";
-
-
-
-    const title = document.createElement("h2");
-
-    title.textContent = product.name;
-
-
-
-    const price = document.createElement("p");
-
-    price.textContent = `$${(product.price / 100).toFixed(2)}`;
-
-
-
-    const button = document.createElement("button");
-
-    button.textContent = "Buy";
-
-    button.addEventListener("click", () => buy(product.id, button));
-
-
-
-    card.append(title, price, button);
-
-    return card;
-
+    dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === currentSlide);
+    });
 }
 
+nextButton?.addEventListener("click", () => {
+    const maxSlide = Math.max(0, cards.length - visibleCards());
+    currentSlide = Math.min(currentSlide + 1, maxSlide);
+    updateCarousel();
+});
 
+prevButton?.addEventListener("click", () => {
+    currentSlide = Math.max(currentSlide - 1, 0);
+    updateCarousel();
+});
 
-async function buy(productId, button) {
+window.addEventListener("resize", updateCarousel);
+updateCarousel();
 
-    button.disabled = true;
+const contactForm = document.querySelector("#contactForm");
+const formMessage = document.querySelector("#formMessage");
 
-    button.textContent = "Redirecting…";
+contactForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
 
+    formMessage.textContent =
+        "Thanks! Your message has been received.";
 
-
-    try {
-
-        const response = await fetch("/api/checkout", {
-
-            method: "POST",
-
-            headers: { "Content-Type": "application/json" },
-
-            body: JSON.stringify({ productId, quantity: 1 })
-
-        });
-
-
-
-        const result = await response.json();
-
-
-
-        if (!response.ok) {
-
-            throw new Error(result.error || "Checkout failed");
-
-        }
-
-
-
-        window.location.href = result.url;
-
-
-
-    } catch (err) {
-
-        console.error("Checkout error:", err);
-
-        alert(err.message || "Something went wrong starting checkout.");
-
-        button.disabled = false;
-
-        button.textContent = "Buy";
-
-    }
-
-}
-
-
-
-loadProducts();
+    contactForm.reset();
+});
