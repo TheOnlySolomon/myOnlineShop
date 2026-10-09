@@ -582,3 +582,75 @@ a {
         grid-column: auto;
     }
 }
+
+
+/* ===== CloverCali Navigation Dashboard ===== */
+
+.dashboard-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    max-width: 85vw;
+    height: 100dvh;
+
+    background: #2F8059;
+    padding: 45px 32px;
+    z-index: 1001;
+
+    display: flex;
+    flex-direction: column;
+
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition: transform 0.3s ease, visibility 0.3s ease;
+}
+
+.dashboard-menu a {
+    display: block;
+    padding: 18px 25px;
+
+    color: #FFFFFF;
+    font-size: 17px;
+    text-decoration: none;
+
+    border-bottom: 1px solid #D4AF37;
+    transition: background 0.2s ease, padding-left 0.2s ease;
+}
+
+.dashboard-menu a:first-child {
+    border-top: none;
+}
+
+.dashboard-menu a:hover {
+    background: rgba(212, 175, 55, 0.12);
+    padding-left: 32px;
+}
+
+/* Open state */
+.dashboard-menu.active {
+    transform: translateX(0);
+    visibility: visible;
+}
+
+/* Darkened background behind the menu */
+.menu-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 1000;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.menu-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Prevent scrolling behind the open menu */
+body.menu-open {
+    overflow: hidden;
+}

@@ -55,3 +55,51 @@ contactForm?.addEventListener("submit", (event) => {
 
     contactForm.reset();
 });
+
+
+/* ===== Navigation Dashboard Functionality ===== */
+
+const menuButton = document.querySelector(".menu-button");
+const dashboardMenu = document.querySelector("#dashboardMenu");
+const menuBackdrop = document.querySelector("#menuBackdrop");
+
+function openDashboard() {
+    dashboardMenu.classList.add("active");
+    menuBackdrop.classList.add("active");
+    dashboardMenu.setAttribute("aria-hidden", "false");
+    menuButton.setAttribute("aria-expanded", "true");
+    menuButton.setAttribute("aria-label", "Close menu");
+    document.body.classList.add("menu-open");
+}
+
+function closeDashboard() {
+    dashboardMenu.classList.remove("active");
+    menuBackdrop.classList.remove("active");
+    dashboardMenu.setAttribute("aria-hidden", "true");
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.setAttribute("aria-label", "Open menu");
+    document.body.classList.remove("menu-open");
+}
+
+menuButton?.addEventListener("click", () => {
+    if (dashboardMenu.classList.contains("active")) {
+        closeDashboard();
+    } else {
+        openDashboard();
+    }
+});
+
+// Close when the visitor clicks outside the menu
+menuBackdrop?.addEventListener("click", closeDashboard);
+
+// Close after choosing a navigation link
+dashboardMenu?.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", closeDashboard);
+});
+
+// Close when Escape is pressed
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+        closeDashboard();
+    }
+});
