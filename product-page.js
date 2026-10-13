@@ -18,6 +18,7 @@ menuButton.addEventListener("click", () => {
     document.body.classList.toggle("menu-open", isOpen);
 });
 
+document.querySelector("#menuClose")?.addEventListener("click", closeMenu);
 menuBackdrop.addEventListener("click", closeMenu);
 
 document.addEventListener("keydown", event => {

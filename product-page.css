@@ -58,16 +58,31 @@ body.products-page {
 /* Navigation drawer */
 .dashboard-menu {
     position: fixed;
-    inset: 0 auto 0 0;
+    top: 90px;
+    left: 12px;
+
     width: min(330px, 85vw);
-    padding: 45px 32px;
+    max-height: calc(100vh - 110px);
+    overflow-y: auto;
+
+    padding: 18px 24px;
     background: #2F8059;
+
+    border: 1px solid rgb(212 175 55 / 55%);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgb(0 0 0 / 25%);
+
     z-index: 1001;
+
     display: flex;
     flex-direction: column;
-    transform: translateX(-100%);
+
+    transform: translateX(calc(-100% - 20px));
     visibility: hidden;
-    transition: transform .3s ease, visibility .3s ease;
+
+    transition:
+        transform .3s ease,
+        visibility .3s ease;
 }
 
 .dashboard-menu.active {
@@ -76,20 +91,37 @@ body.products-page {
 }
 
 .dashboard-menu a {
+    display: block;
     color: var(--white);
     text-decoration: none;
-    padding: 20px 25px;
+
+    padding: 16px 12px;
     border-bottom: 1px solid var(--gold);
+
+    font-size: 18px;
+    transition:
+        background-color .2s ease,
+        padding-left .2s ease;
+}
+
+.dashboard-menu a:last-child {
+    border-bottom: none;
+}
+
+.dashboard-menu a:hover {
+    background-color: rgb(255 255 255 / 8%);
+    padding-left: 18px;
 }
 
 .menu-backdrop {
     position: fixed;
     inset: 0;
     z-index: 1000;
+
     background: rgb(0 0 0 / 35%);
     opacity: 0;
     visibility: hidden;
-    transition: .3s ease;
+    transition: opacity .3s ease, visibility .3s ease;
 }
 
 .menu-backdrop.active {
