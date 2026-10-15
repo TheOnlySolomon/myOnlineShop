@@ -91,7 +91,7 @@ menuButton?.addEventListener("click", () => {
 
 // Close when the visitor clicks outside the menu
 menuBackdrop?.addEventListener("click", closeDashboard);
-
+document.querySelector("#menuClose")?.addEventListener("click", closeDashboard);
 // Close after choosing a navigation link
 dashboardMenu?.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", closeDashboard);

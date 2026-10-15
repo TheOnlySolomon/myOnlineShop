@@ -56,9 +56,12 @@
     <!-- Navigation drawer -->
     <div class="menu-backdrop" id="menuBackdrop"></div>
 
-    <nav class="dashboard-menu" id="dashboardMenu">
-        <a href="products.html">Products</a>
+    <nav class="dashboard-menu" id="dashboardMenu" aria-label="Main navigation">
+        <button class="menu-close" id="menuClose" type="button" aria-label="Close menu">
+            <span aria-hidden="true">&times;</span> Close
+        </button>
         <a href="index.html#our-story">About Us</a>
+        <a href="products.html">Products</a>
         <a href="index.html#reviews">Reviews</a>
         <a href="index.html#contact">Contact Us</a>
     </nav>
