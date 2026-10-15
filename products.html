@@ -13,34 +13,45 @@
 <body class="products-page">
 
     <!-- Header -->
-    <header class="product-header">
-        <button class="menu-button" id="menuButton"
-                aria-label="Open menu" aria-expanded="false">
-            ☰
+    
+<header class="site-header">
+    <div class="nav-shell">
+
+        <button class="icon-button menu-button"
+                id="menuButton"
+                aria-label="Open menu"
+                aria-expanded="false"
+                type="button">
+            <span></span>
+            <span></span>
+            <span></span>
         </button>
 
-        <a href="index.html" class="brand">
-            <img src="images/CloverCaliLogo.png" alt="CloverCali">
+        <a class="brand" href="index.html" aria-label="CloverCali Home">
+            <img src="images/CloverCaliLogo.png" alt="CloverCali logo">
         </a>
 
         <div class="nav-actions">
-                <button class="icon-button" aria-label="Search" type="button">
-                    <svg viewBox="0 0 32 32" aria-hidden="true">
-                        <circle cx="13.5" cy="13.5" r="9.5"></circle>
-                        <line x1="20.5" y1="20.5" x2="29" y2="29"></line>
-                    </svg>
-                </button>
+            <button class="icon-button search-toggle"
+                    aria-label="Search"
+                    type="button">
+                <svg viewBox="0 0 32 32" aria-hidden="true">
+                    <circle cx="13.5" cy="13.5" r="9.5"></circle>
+                    <line x1="20.5" y1="20.5" x2="29" y2="29"></line>
+                </svg>
+            </button>
 
-                <button class="icon-button cart-button" aria-label="Shopping cart" type="button">
+            <a class="icon-button cart-button" href="cart.html" aria-label="Shopping cart">
                     <svg viewBox="0 0 36 32" aria-hidden="true">
-                        <path d="M3 5h5l3.2 16.5h17.2l4-12H10"></path>
-                        <circle cx="14" cy="27" r="1.7"></circle>
-                        <circle cx="27" cy="27" r="1.7"></circle>
+                    <path d="M3 5h5l3.2 16.5h17.2l4-12H10"></path>
+                    <circle cx="14" cy="27" r="1.7"></circle>
+                    <circle cx="27" cy="27" r="1.7"></circle>
                     </svg>
-                </button>
-            </div>
+                    </a>
         </div>
-    </header>
+
+    </div>
+</header>
 
     <!-- Navigation drawer -->
     <div class="menu-backdrop" id="menuBackdrop"></div>

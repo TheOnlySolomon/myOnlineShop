@@ -1,0 +1,163 @@
+
+/* =================================
+   CLOVERCALI CART PAGE
+   Header and footer use shared styles
+   from style.css
+   ================================= */
+
+:root {
+    --cart-dark-green: #0B5D3B;
+    --cart-light-green: #378E63;
+    --cart-gold: #D4AF37;
+    --cart-white: #FFFFFF;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+/* Main background */
+
+.cart-main {
+    flex: 1;
+    min-height: 345px;
+    background-color: var(--cart-dark-green);
+    color: var(--cart-white);
+}
+
+/* Empty cart message */
+
+.empty-cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 20px 80px;
+    text-align: center;
+}
+
+.empty-cart p {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0.15px;
+}
+
+/* View products button */
+
+.cart-view-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 75px;
+    min-height: 24px;
+    margin-top: 76px;
+    padding: 6px 14px;
+
+    border: 1px solid var(--cart-gold);
+    border-radius: 1px;
+
+    background: transparent;
+    color: var(--cart-white);
+
+    font-size: 7px;
+    text-decoration: none;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.cart-view-button:hover {
+    background-color: var(--cart-gold);
+    color: var(--cart-dark-green);
+}
+
+/* Footer */
+
+.cart-footer {
+    background-color: var(--cart-light-green);
+    color: var(--cart-white);
+}
+
+/* Navigation drawer */
+
+.cart-menu {
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+
+    position: absolute;
+    z-index: 100;
+    top: 90px;
+    left: 0;
+
+    width: min(280px, 85vw);
+    padding: 24px;
+
+    background-color: var(--cart-light-green);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cart-menu.is-open {
+    display: flex;
+}
+
+.cart-menu a {
+    color: var(--cart-white);
+    text-decoration: none;
+}
+
+.cart-menu a:hover {
+    color: var(--cart-gold);
+}
+
+/* Tablet and desktop */
+
+@media (min-width: 700px) {
+    .cart-main {
+        min-height: 420px;
+    }
+
+    .empty-cart {
+        padding-top: 60px;
+    }
+
+    .empty-cart p {
+        font-size: 17px;
+    }
+
+    .cart-view-button {
+        min-width: 100px;
+        min-height: 32px;
+        margin-top: 76px;
+        font-size: 10px;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 420px) {
+    .cart-main {
+        min-height: 320px;
+    }
+
+    .empty-cart {
+        padding-top: 45px;
+    }
+
+    .empty-cart p {
+        font-size: 14px;
+    }
+
+    .cart-menu {
+        top: 76px;
+    }
+}

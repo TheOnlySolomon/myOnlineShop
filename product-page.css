@@ -40,11 +40,6 @@ body.products-page {
     justify-self: start;
 }
 
-.brand img {
-    width: 90px;
-    display: block;
-}
-
 .header-actions {
     justify-self: end;
     display: flex;
